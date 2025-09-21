@@ -55,19 +55,6 @@ A beautiful, interactive demo showcasing the two-mode AI assistant functionality
 - `AIResponseCard`: Rich AI response formatting.
 - `LoadingIndicator`: Animated typing indicator.
 
-
-## File Structure
-```
-demo/
-├── page.tsx          # Main demo component (self-contained)
-├── README.md         # This file
-└── components/       # Optional: Extract components for reuse
-    ├── TaskInput.tsx
-    ├── MessageBubble.tsx
-    ├── AIResponseCard.tsx
-    └── LoadingIndicator.tsx
-```
-
 ## Dependencies Used
 - **Framer Motion**: Smooth animations.
 - **Lucide React**: Beautiful icons.
