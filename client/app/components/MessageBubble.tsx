@@ -53,20 +53,24 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
       className={`flex gap-3 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
     >
       <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-        isUser ? 'bg-blue-500' : 'bg-purple-500'
+        isUser ? 'bg-[#14B8A6]' : 'bg-purple-500'
       }`}>
         {isUser ? <User className="w-4 h-4 text-white" /> : <Bot className="w-4 h-4 text-white" />}
       </div>
       
       <div className={`max-w-[80%] ${isUser ? 'text-right' : 'text-left'}`}>
-        <div className={`inline-block px-4 py-2 rounded-lg ${
-          isUser 
-            ? 'bg-blue-500 text-white' 
-            : 'bg-gray-100 text-gray-800'
-        }`}>
-          {message.content}
-        </div>
+        {/* Only show content bubble if it's a user message OR an AI message without aiResponse */}
+        {(isUser || !message.aiResponse) && (
+          <div className={`inline-block px-4 py-2 rounded-lg ${
+            isUser 
+              ? 'bg-[#14B8A6] text-white' 
+              : 'bg-gray-100 text-gray-800'
+          }`}>
+            {message.content}
+          </div>
+        )}
         
+        {/* Show AI response card for AI messages with structured responses */}
         {message.aiResponse && (
           <AIResponseCard response={message.aiResponse} />
         )}

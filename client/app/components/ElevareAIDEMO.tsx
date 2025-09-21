@@ -7,6 +7,10 @@ import { Send, Bot } from 'lucide-react'
 import TaskInput from './TaskInput'
 import MessageBubble from './MessageBubble'
 import LoadingIndicator from './LoadingIndicator'
+import AIResponseCard from './AIResponseCard'
+
+// Import API function
+import { callElevareAI } from '../api'
 
 // Types
 interface Task {
@@ -51,7 +55,7 @@ export default function ElevareAIDemo() {
     {
       id: '1',
       type: 'ai',
-      content: 'Hi! I\'m Elevare, your AI productivity coach. I can help you discover your ONE Thing for today. Try asking me something like "What should I focus on?" or add some tasks first!',
+      content: 'Welcome! I\'m here to help you cut through the overwhelm and discover your ONE Thing - the most important action that will make everything else easier or unnecessary. What\'s been on your mind lately? What challenges are you facing, or what goals are calling to you?',
       timestamp: new Date()
     }
   ])
@@ -60,52 +64,45 @@ export default function ElevareAIDemo() {
   const [isLoading, setIsLoading] = useState(false)
 
   const sendMessage = async () => {
-  if (!input.trim() || isLoading) return
+    if (!input.trim() || isLoading) return
 
-  const userMessage: Message = {
-    id: Date.now().toString(),
-    type: 'user',
-    content: input,
-    timestamp: new Date()
-  }
-
-  setMessages(prev => [...prev, userMessage])
-  setInput('')
-  setIsLoading(true)
-
-  try {
-    const aiResponse = await callElevareAI(input, tasks.length > 0 ? tasks : undefined)
-    
-    const aiMessage: Message = {
-      id: (Date.now() + 1).toString(),
-      type: 'ai',
-      content: aiResponse.mode === 'task-suggestion' 
-        ? `I've analyzed your tasks and found your ONE Thing!`
-        : `Let me help you discover your ONE Thing!`,
-      timestamp: new Date(),
-      aiResponse
-    }
-
-    setMessages(prev => [...prev, aiMessage])
-  } catch (error) {
-    const errorMessage: Message = {
-      id: (Date.now() + 1).toString(),
-      type: 'ai',
-      content: 'Sorry, I encountered an error. Please try again!',
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      type: 'user',
+      content: input,
       timestamp: new Date()
     }
-    setMessages(prev => [...prev, errorMessage])
-  } finally {
-    setIsLoading(false)
-  }
-}
 
-  const quickPrompts = [
-    "What should I focus on today?",
-    "I want to learn Python",
-    "Help me be more productive",
-    "I need to improve my health"
-  ]
+    setMessages(prev => [...prev, userMessage])
+    setInput('')
+    setIsLoading(true)
+
+    try {
+      const aiResponse = await callElevareAI(input, tasks.length > 0 ? tasks : undefined)
+
+      const aiMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: 'ai',
+        content: aiResponse.suggestion?.name || aiResponse.exploration?.content || 'I\'m here to help you discover your ONE Thing.',
+        timestamp: new Date(),
+        aiResponse
+      }
+
+      setMessages(prev => [...prev, aiMessage])
+    } catch (error) {
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: 'ai',
+        content: 'Sorry, I encountered an error. Please try again!',
+        timestamp: new Date()
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -117,26 +114,30 @@ export default function ElevareAIDemo() {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center justify-center gap-3 mb-4"
           >
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+            <div className="w-12 h-12 bg-gradient-to-r from-[#7C3AED] to-[#14B8A6] rounded-full flex items-center justify-center">
               <Bot className="w-6 h-6 text-white" />
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-[#7C3AED] to-[#14B8A6] bg-clip-text text-transparent">
               Elevare AI Assistant
             </h1>
           </motion.div>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Your AI productivity coach that adapts to help you discover your ONE Thing. 
+            Your AI productivity coach that adapts to help you discover your ONE Thing.
             Add tasks for focused suggestions, or chat freely for exploration and guidance.
           </p>
         </div>
 
-        {/* Task Input Component */}
-        <TaskInput tasks={tasks} setTasks={setTasks} />
-
-        {/* Chat Interface */}
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-          {/* Messages */}
-          <div className="h-96 overflow-y-auto p-4 space-y-4">
+        {/* Conversation History - FIRST */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-[#7C3AED]/10 shadow-lg mb-6">
+          <div className="border-b border-[#7C3AED]/10 p-4">
+            <h4 className="text-lg font-semibold text-[#7C3AED] text-center">
+              Our Conversation Journey
+            </h4>
+            <p className="text-sm text-gray-600 text-center mt-1">
+              Discovering clarity through thoughtful dialogue
+            </p>
+          </div>
+          <div className="h-96 overflow-y-auto p-6 space-y-6">
             <AnimatePresence>
               {messages.map((message) => (
                 <MessageBubble key={message.id} message={message} />
@@ -144,54 +145,38 @@ export default function ElevareAIDemo() {
               {isLoading && <LoadingIndicator />}
             </AnimatePresence>
           </div>
-
-          {/* Quick Prompts */}
-          {!isLoading && (
-            <div className="border-t border-gray-200 p-4">
-              <div className="flex flex-wrap gap-2 mb-3">
-                {quickPrompts.map((prompt) => (
-                  <button
-                    key={prompt}
-                    onClick={() => setInput(prompt)}
-                    className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-                  >
-                    {prompt}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Input */}
-          <div className="border-t border-gray-200 p-4">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                placeholder="Ask me anything about productivity..."
-                disabled={isLoading}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
-              />
-              <button
-                onClick={sendMessage}
-                disabled={!input.trim() || isLoading}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <Send className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
         </div>
 
-        {/* Mode Indicator */}
-        <div className="mt-4 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full border border-gray-200 text-sm text-gray-600">
-            <div className={`w-2 h-2 rounded-full ${
-              tasks.length > 0 ? 'bg-green-500' : 'bg-purple-500'
-            }`} />
-            {tasks.length > 0 ? 'Task Suggestion Mode' : 'Exploration Mode'}
+        {/* Minimalist Input Section */}
+        <div className="bg-white/60 rounded-lg border border-gray-200 p-4 mb-4">
+          <div className="flex gap-3 mb-3">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+              placeholder="What's on your mind? Share your thoughts..."
+              disabled={isLoading}
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7C3AED] focus:border-[#7C3AED] text-gray-700 placeholder-gray-400 disabled:opacity-50"
+            />
+            <button
+              onClick={sendMessage}
+              disabled={!input.trim() || isLoading}
+              className="px-4 py-2 bg-[#7C3AED] text-white rounded-lg hover:bg-[#6D28D9] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <Send className="w-4 h-4" />
+            </button>
+          </div>
+          
+          {/* Minimalist Task Input */}
+          <TaskInput tasks={tasks} setTasks={setTasks} />
+        </div>
+
+        {/* Simple Mode Indicator */}
+        <div className="text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/60 rounded-full border border-gray-200 text-xs text-gray-600">
+            <div className={`w-2 h-2 rounded-full ${tasks.length > 0 ? 'bg-[#14B8A6]' : 'bg-[#7C3AED]'}`} />
+            {tasks.length > 0 ? 'Context Mode' : 'Discovery Mode'}
           </div>
         </div>
       </div>

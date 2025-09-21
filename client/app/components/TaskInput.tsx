@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Target } from 'lucide-react'
+
 
 interface Task {
   id: string
@@ -29,39 +29,34 @@ export default function TaskInput({ tasks, setTasks }: TaskInputProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4 mb-4">
-      <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-        <Target className="w-4 h-4" />
-        Current Tasks (Optional)
-      </h3>
-      
-      <div className="flex gap-2 mb-3">
+    <div className="border-t border-gray-200 pt-3">
+      <div className="flex gap-2 mb-2">
         <input
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && addTask()}
-          placeholder="Add a task..."
-          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          onKeyDown={(e) => e.key === 'Enter' && addTask()}
+          placeholder="Add context (tasks, goals)..."
+          className="flex-1 px-3 py-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-[#7C3AED] focus:border-[#7C3AED] text-gray-700 placeholder-gray-400"
         />
         <button
           onClick={addTask}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+          className="px-3 py-1.5 bg-[#14B8A6] text-white rounded hover:bg-[#0F9488] transition-colors text-xs"
         >
           Add
         </button>
       </div>
 
       {tasks.length > 0 && (
-        <div className="space-y-2">
+        <div className="space-y-1">
           {tasks.map((task) => (
-            <div key={task.id} className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-md">
+            <div key={task.id} className="flex items-center justify-between bg-gray-50 px-2 py-1 rounded text-xs">
               <span className="text-gray-700">{task.name}</span>
               <button
                 onClick={() => removeTask(task.id)}
-                className="text-red-500 hover:text-red-700 text-sm"
+                className="text-[#7C3AED] hover:text-[#6D28D9] text-xs transition-colors"
               >
-                Remove
+                ×
               </button>
             </div>
           ))}

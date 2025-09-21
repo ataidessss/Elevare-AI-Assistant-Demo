@@ -27,7 +27,7 @@ interface AIResponse {
 
 export const callElevareAI = async (prompt: string, tasks?: Task[]): Promise<AIResponse> => {
   try {
-    const response = await fetch('http://localhost:5000/api/ai/suggest', {
+    const response = await fetch('https://elevare-ai-assistant.onrender.com/api/ai/suggest', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const callElevareAI = async (prompt: string, tasks?: Task[]): Promise<AIR
     return data
   } catch (error) {
     console.error('Error calling Elevare AI:', error)
-    
+
     // Fallback response in case of API failure
     return {
       success: false,
@@ -61,8 +61,8 @@ export const callElevareAI = async (prompt: string, tasks?: Task[]): Promise<AIR
 
 // Production API integration with authentication.
 export const callElevareAIWithAuth = async (
-  prompt: string, 
-  tasks?: Task[], 
+  prompt: string,
+  tasks?: Task[],
   authToken?: string
 ): Promise<AIResponse> => {
   try {
@@ -95,7 +95,7 @@ export const callElevareAIWithAuth = async (
     return data
   } catch (error) {
     console.error('Error calling Elevare AI:', error)
-    
+
     // Fallback response
     return {
       success: false,

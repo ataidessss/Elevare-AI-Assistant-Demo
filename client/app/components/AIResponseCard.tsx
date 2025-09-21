@@ -35,9 +35,8 @@ export default function AIResponseCard({ response }: AIResponseCardProps) {
       className="mt-3 bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
     >
       <div className="flex items-center gap-2 mb-3">
-        <div className={`w-2 h-2 rounded-full ${
-          response.mode === 'task-suggestion' ? 'bg-green-500' : 'bg-purple-500'
-        }`} />
+        <div className={`w-2 h-2 rounded-full ${response.mode === 'task-suggestion' ? 'bg-green-500' : 'bg-purple-500'
+          }`} />
         <span className="text-sm font-medium text-gray-600">
           {response.mode === 'task-suggestion' ? 'Task Suggestion Mode' : 'Exploration Mode'}
         </span>
@@ -52,7 +51,7 @@ export default function AIResponseCard({ response }: AIResponseCardProps) {
               <p className="text-gray-700 font-medium">{response.suggestion.name}</p>
             </div>
           </div>
-          
+
           <div className="flex items-start gap-2">
             <Brain className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
             <div>
