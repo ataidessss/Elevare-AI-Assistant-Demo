@@ -2,14 +2,9 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Send, Bot } from 'lucide-react'
-
-// Import extracted components
 import TaskInput from './TaskInput'
 import MessageBubble from './MessageBubble'
 import LoadingIndicator from './LoadingIndicator'
-import AIResponseCard from './AIResponseCard'
-
-// Import API function
 import { callElevareAI } from '../api'
 
 // Types
@@ -118,12 +113,12 @@ export default function ElevareAIDemo() {
               <Bot className="w-6 h-6 text-white" />
             </div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-[#7C3AED] to-[#14B8A6] bg-clip-text text-transparent">
-              Elevare AI Assistant
+            Elevare AI
             </h1>
           </motion.div>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Your AI productivity coach that adapts to help you discover your ONE Thing.
-            Add tasks for focused suggestions, or chat freely for exploration and guidance.
+          Your AI productivity coach that adapts to help you discover your ONE Thing.
+          Add tasks for focused suggestions, or chat freely for exploration and guidance.
           </p>
         </div>
 
@@ -131,10 +126,10 @@ export default function ElevareAIDemo() {
         <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-[#7C3AED]/10 shadow-lg mb-6">
           <div className="border-b border-[#7C3AED]/10 p-4">
             <h4 className="text-lg font-semibold text-[#7C3AED] text-center">
-              Our Conversation Journey
+            Our Conversation Journey
             </h4>
             <p className="text-sm text-gray-600 text-center mt-1">
-              Discovering clarity through thoughtful dialogue
+            Discovering clarity through thoughtful dialogue
             </p>
           </div>
           <div className="h-96 overflow-y-auto p-6 space-y-6">
