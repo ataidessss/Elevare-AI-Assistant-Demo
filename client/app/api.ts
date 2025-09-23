@@ -27,7 +27,7 @@ interface AIResponse {
 
 export const callElevareAI = async (prompt: string, tasks?: Task[]): Promise<AIResponse> => {
   try {
-    const response = await fetch('https://elevare-ai-assistant.onrender.com/api/ai/suggest', {
+    const response = await fetch('https://elevare-ai-assistant.vercel.app/api/ai/suggest', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export const callElevareAIWithAuth = async (
       headers['Authorization'] = `Bearer ${authToken}`
     }
 
-    const response = await fetch('https://elevare-ai-assistant.onrender.com/api/ai/suggest', {
+    const response = await fetch('https://elevare-ai-assistant.vercel.app/api/ai/suggest', {
       method: 'POST',
       headers,
       body: JSON.stringify({
